@@ -7,7 +7,7 @@ import com.illmeyer.polygraph.core.Module;
 public class Syslib implements Module {
 
 	@Override
-	public void init() {
+	public void initialize() {
 		System.out.println("Initializing Syslib");
 	}
 
