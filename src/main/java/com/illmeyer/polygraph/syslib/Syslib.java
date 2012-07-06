@@ -2,7 +2,7 @@ package com.illmeyer.polygraph.syslib;
 
 import java.util.Map;
 
-import com.illmeyer.polygraph.core.Module;
+import com.illmeyer.polygraph.core.interfaces.Module;
 
 public class Syslib implements Module {
 
