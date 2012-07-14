@@ -24,7 +24,7 @@ public class TextPartDirective implements TemplateDirectiveModel {
 	private static final Log log = LogFactory.getLog(TextPartDirective.class);
 
 	@Override
-	public void execute(Environment env, Map params, TemplateModel[] loopVars,
+	public void execute(Environment env, @SuppressWarnings("rawtypes") Map params, TemplateModel[] loopVars,
 			TemplateDirectiveBody body) throws TemplateException, IOException {
 
 		if (env.getCustomAttribute(CoreConstants.ECA_CURRENT_PART)!=null)

@@ -22,7 +22,7 @@ public class BinaryPartDirective implements TemplateDirectiveModel {
 	private static final Log log = LogFactory.getLog(BinaryPartDirective.class);
 
 	@Override
-	public void execute(Environment env, Map params, TemplateModel[] loopVars,
+	public void execute(Environment env, @SuppressWarnings("rawtypes") Map params, TemplateModel[] loopVars,
 			TemplateDirectiveBody body) throws TemplateException, IOException {
 
 		if (env.getCustomAttribute(CoreConstants.ECA_CURRENT_PART)!=null)
@@ -41,7 +41,7 @@ public class BinaryPartDirective implements TemplateDirectiveModel {
 		if (parName!=null && parName instanceof TemplateScalarModel) {
 			partName=((TemplateScalarModel)parName).getAsString();
 		}
-		if (partName==null || partName.trim().isEmpty()) throw new TemplateException("textpart needs a name",env);
+		if (partName==null || partName.trim().isEmpty()) throw new TemplateException("binarypart needs a name",env);
 		if (partMap.containsKey(partName)) log.warn("part '"+partName+"' is already defined");
 			
 		MessagePart currentPart = new MessagePart();

@@ -24,7 +24,6 @@ public class Syslib implements Module {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 }
