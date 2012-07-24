@@ -22,11 +22,17 @@ package com.illmeyer.polygraph.syslib;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.Getter;
+
+import com.illmeyer.polygraph.core.data.VersionNumber;
 import com.illmeyer.polygraph.core.interfaces.Module;
 import com.illmeyer.polygraph.syslib.directives.BinaryPartDirective;
 import com.illmeyer.polygraph.syslib.directives.TextPartDirective;
 
 public class Syslib implements Module {
+	
+	@Getter
+	private final VersionNumber versionNumber = new VersionNumber(0,1,0);
 
 	@Override
 	public void initialize() {
