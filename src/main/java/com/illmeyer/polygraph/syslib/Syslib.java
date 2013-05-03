@@ -47,6 +47,7 @@ public class Syslib implements Module {
 		Map<String,Object> result = new HashMap<String, Object>();
 		new TagAdapter(new DefaultTagFactory(BinaryPartTag.class)).register(result);
 		new TagAdapter(new DefaultTagFactory(TextPartTag.class)).register(result);
+		new TagAdapter(new DefaultTagFactory(LoadDataTag.class)).register(result);
 		return result;
 	}
 
