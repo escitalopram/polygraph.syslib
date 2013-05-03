@@ -37,6 +37,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateScalarModel;
 
+@Deprecated
 public class BinaryPartDirective implements TemplateDirectiveModel {
 	private static final Log log = LogFactory.getLog(BinaryPartDirective.class);
 

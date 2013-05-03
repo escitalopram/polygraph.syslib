@@ -26,8 +26,11 @@ import lombok.Getter;
 
 import com.illmeyer.polygraph.core.data.VersionNumber;
 import com.illmeyer.polygraph.core.interfaces.Module;
-import com.illmeyer.polygraph.syslib.directives.BinaryPartDirective;
-import com.illmeyer.polygraph.syslib.directives.TextPartDirective;
+import com.illmeyer.polygraph.syslib.tags.BinaryPartTag;
+import com.illmeyer.polygraph.syslib.tags.LoadDataTag;
+import com.illmeyer.polygraph.syslib.tags.TextPartTag;
+import com.illmeyer.polygraph.template.DefaultTagFactory;
+import com.illmeyer.polygraph.template.TagAdapter;
 
 public class Syslib implements Module {
 	
@@ -42,8 +45,8 @@ public class Syslib implements Module {
 	@Override
 	public Map<String, Object> createContext() {
 		Map<String,Object> result = new HashMap<String, Object>();
-		result.put("binarypart", new BinaryPartDirective());
-		result.put("textpart", new TextPartDirective());
+		new TagAdapter(new DefaultTagFactory(BinaryPartTag.class)).register(result);
+		new TagAdapter(new DefaultTagFactory(TextPartTag.class)).register(result);
 		return result;
 	}
 

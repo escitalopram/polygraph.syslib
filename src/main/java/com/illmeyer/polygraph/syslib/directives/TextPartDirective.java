@@ -39,6 +39,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateScalarModel;
 
+@Deprecated
 public class TextPartDirective implements TemplateDirectiveModel {
 	private static final Log log = LogFactory.getLog(TextPartDirective.class);
 
