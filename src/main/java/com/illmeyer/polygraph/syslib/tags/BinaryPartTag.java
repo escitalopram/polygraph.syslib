@@ -26,12 +26,13 @@ import org.apache.commons.io.output.NullWriter;
 import lombok.Getter;
 
 import com.illmeyer.polygraph.core.data.MessagePart;
+import com.illmeyer.polygraph.template.BodyExistence;
 import com.illmeyer.polygraph.template.PolygraphEnvironment;
 import com.illmeyer.polygraph.template.PolygraphTag;
 import com.illmeyer.polygraph.template.TagInfo;
 import com.illmeyer.polygraph.template.TagParameter;
 
-@TagInfo(name="binarypart", loopVarCount=0)
+@TagInfo(name="binarypart", nestable=false, body=BodyExistence.REQUIRED)
 public class BinaryPartTag implements PolygraphTag {
 
 	@Getter @TagParameter

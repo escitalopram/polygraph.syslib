@@ -26,13 +26,14 @@ import java.nio.charset.Charset;
 import lombok.Getter;
 
 import com.illmeyer.polygraph.core.data.MessagePart;
+import com.illmeyer.polygraph.template.BodyExistence;
 import com.illmeyer.polygraph.template.PolygraphEnvironment;
 import com.illmeyer.polygraph.template.PolygraphTag;
 import com.illmeyer.polygraph.template.PolygraphTemplateException;
 import com.illmeyer.polygraph.template.TagInfo;
 import com.illmeyer.polygraph.template.TagParameter;
 
-@TagInfo(name="textpart",loopVarCount=0)
+@TagInfo(name="textpart",nestable=false,body=BodyExistence.REQUIRED)
 public class TextPartTag implements PolygraphTag {
 	
 	@TagParameter(optional=true) @Getter

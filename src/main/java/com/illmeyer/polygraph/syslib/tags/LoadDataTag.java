@@ -24,16 +24,16 @@ import java.io.InputStream;
 import java.net.URL;
 
 import org.apache.commons.io.IOUtils;
-
 import lombok.Getter;
 
+import com.illmeyer.polygraph.template.BodyExistence;
 import com.illmeyer.polygraph.template.PolygraphEnvironment;
 import com.illmeyer.polygraph.template.PolygraphTag;
 import com.illmeyer.polygraph.template.PolygraphTemplateException;
 import com.illmeyer.polygraph.template.TagInfo;
 import com.illmeyer.polygraph.template.TagParameter;
 
-@TagInfo(name="loaddata",loopVarCount=0)
+@TagInfo(name="loaddata",nestable=false,body=BodyExistence.FORBIDDEN)
 public class LoadDataTag implements PolygraphTag {
 	
 	@TagParameter(optional=true) @Getter
