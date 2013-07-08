@@ -24,8 +24,11 @@ import java.io.InputStream;
 import java.net.URL;
 
 import org.apache.commons.io.IOUtils;
+
+import lombok.Cleanup;
 import lombok.Getter;
 
+import com.illmeyer.polygraph.core.data.MessagePart;
 import com.illmeyer.polygraph.template.BodyExistence;
 import com.illmeyer.polygraph.template.PolygraphEnvironment;
 import com.illmeyer.polygraph.template.PolygraphTag;
@@ -33,33 +36,39 @@ import com.illmeyer.polygraph.template.PolygraphTemplateException;
 import com.illmeyer.polygraph.template.TagInfo;
 import com.illmeyer.polygraph.template.TagParameter;
 
-@TagInfo(name="loaddata",nestable=false,body=BodyExistence.FORBIDDEN)
-public class LoadDataTag implements PolygraphTag {
-	
+@TagInfo(name="loadpart",nestable=false,body=BodyExistence.FORBIDDEN)
+public class LoadPartTag implements PolygraphTag {
+
 	@TagParameter(optional=true) @Getter
 	private String url;
 
 	@TagParameter(optional=true) @Getter
 	private String vfs;
 
+	@TagParameter @Getter
+	private String name;
+
 	@Override
 	public void execute(PolygraphEnvironment env) throws IOException {
 		// TODO: Check if IOException comes from URL stream or not
-		if ((url==null && vfs==null) || (url!=null && vfs != null))
+		if ((url==null) == (vfs==null))
 			throw new PolygraphTemplateException("Exactly one of the parameters 'url' and 'vfs' must be specified");
-		
-		BinaryPartTag bp = env.requireParentTag(BinaryPartTag.class);
+
+		MessagePart p = new MessagePart();
 
 		if (url!=null) {
 			URL u = new URL(url);
+			@Cleanup
 			InputStream is = u.openStream();
-			bp.getPart().setMessage(IOUtils.toByteArray(is));
-			is.close();
+			p.setMessage(IOUtils.toByteArray(is));
 		}
-		
+
 		if (vfs!=null) {
-			// TODO
+			@Cleanup
+			InputStream is = env.getVfsStream(vfs);
+			p.setMessage(IOUtils.toByteArray(is));
 		}
+		env.registerMessagePart(name, p);
 	}
 
 }
