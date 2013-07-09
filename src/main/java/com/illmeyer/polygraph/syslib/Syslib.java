@@ -27,6 +27,7 @@ import lombok.Getter;
 import com.illmeyer.polygraph.core.data.VersionNumber;
 import com.illmeyer.polygraph.core.interfaces.Module;
 import com.illmeyer.polygraph.syslib.tags.LoadPartTag;
+import com.illmeyer.polygraph.syslib.tags.SkipTag;
 import com.illmeyer.polygraph.syslib.tags.TextPartTag;
 import com.illmeyer.polygraph.template.DefaultTagFactory;
 import com.illmeyer.polygraph.template.TagAdapter;
@@ -46,6 +47,7 @@ public class Syslib implements Module {
 		Map<String,Object> result = new HashMap<String, Object>();
 		new TagAdapter(new DefaultTagFactory(TextPartTag.class)).register(result);
 		new TagAdapter(new DefaultTagFactory(LoadPartTag.class)).register(result);
+		new TagAdapter(new DefaultTagFactory(SkipTag.class)).register(result);
 		return result;
 	}
 
